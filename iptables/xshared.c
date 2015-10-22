@@ -259,7 +259,7 @@ bool xtables_lock(bool wait)
 	while (1) {
 		ret = bind(xt_socket, (struct sockaddr*)&xt_addr,
 			   offsetof(struct sockaddr_un, sun_path)+XT_SOCKET_LEN);
-		if (ret == 0)
+		if (ret <= 0)
 			return true;
 		else if (wait == false)
 			return false;
